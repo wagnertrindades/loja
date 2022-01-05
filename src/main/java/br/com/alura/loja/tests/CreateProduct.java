@@ -3,11 +3,10 @@ package br.com.alura.loja.tests;
 import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 import br.com.alura.loja.dao.ProductDao;
 import br.com.alura.loja.model.Product;
+import br.com.alura.loja.util.JPAUtil;
 
 public class CreateProduct {
 	public static void main(String[] args) {
@@ -16,9 +15,7 @@ public class CreateProduct {
 		smartphone.setDescription("Apple smartphone with virtual reality");
 		smartphone.setPrice(new BigDecimal("700"));
 		
-		EntityManagerFactory factory = Persistence.createEntityManagerFactory("loja");
-		EntityManager em = factory.createEntityManager();
-		
+		EntityManager em = JPAUtil.getEntityManager();
 		ProductDao productDao = new ProductDao(em);
 		
 		em.getTransaction().begin();
