@@ -17,6 +17,10 @@ public class CreateProduct {
 		
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("loja");
 		EntityManager em = factory.createEntityManager();
+		
+		em.getTransaction().begin();
 		em.persist(smartphone);
+		em.getTransaction().commit();
+		em.close();
 	}
 }
